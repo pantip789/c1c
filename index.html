@@ -23,7 +23,6 @@
         }
     </style>
     <script>
-        // บล็อกโฆษณาที่มี ID หรือ Class ที่พบบ่อย
         window.onload = function () {
             // ซ่อนอิลิเมนต์ที่มีการใช้ ID หรือ Class ที่เกี่ยวข้องกับโฆษณา
             var adElements = document.querySelectorAll('[id*="ad"], [class*="ad"], [src*="ads"]');
@@ -54,12 +53,36 @@
                 }
             });
 
+            // บล็อกการแสดง alert, confirm, prompt ที่อาจใช้สร้าง pop-up
+            window.alert = function() {};
+            window.confirm = function() { return false; };
+            window.prompt = function() { return ''; };
+
+            // บล็อกการเปิดหน้าใหม่ในกรณีที่ pop-up ถูกเปิดจากการคลิกที่ลิงค์
+            window.open = function() { return null; };
+
+            // การบล็อกการใช้สถานะหรือการแจ้งเตือน
+            window.onbeforeunload = function() {
+                return null; // ปิดการแสดงการแจ้งเตือนเมื่อพยายามปิดหน้าหรือเปลี่ยนหน้า
+            };
+
+            // บล็อกการสร้างแถบ Pop-up หรือการกระทำที่เกี่ยวข้อง
+            document.addEventListener('DOMContentLoaded', function() {
+                // ลบ element ที่เป็น Pop-up ที่มีการตั้งค่าแสดงขึ้นมา
+                var popups = document.querySelectorAll('div, iframe');
+                popups.forEach(function(popup) {
+                    if (popup.classList.contains('popup') || popup.style.display === 'block') {
+                        popup.style.display = 'none';
+                        popup.remove();
+                    }
+                });
+            }, false);
+
             console.log('โฆษณาและ Pop-up ถูกบล็อกเรียบร้อยแล้ว');
         };
     </script>
 </head>
 <body>
-    <!-- ใส่ลิงค์ที่ต้องการแสดง -->
     <a href="intent://dookeela.live/live-tv/ccm#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
         <img src="https://img5.pic.in.th/file/secure-sv1/oie_d6nHaoquYtAK-1.png" border="1px"></a>
     
