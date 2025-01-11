@@ -21,7 +21,6 @@
             height: 60px;
             width: 60px;
         }
-        /* ซ่อนทุกๆ สิ่งที่เป็น Overlay หรือ Pop-up */
         .popup, .overlay, [style*="position: fixed"], [style*="position: absolute"] {
             display: none !important;
         }
@@ -62,29 +61,36 @@
             window.confirm = function() { return false; };
             window.prompt = function() { return ''; };
 
-            // บล็อกการเปิดหน้าใหม่ในกรณีที่ pop-up ถูกเปิดจากการคลิกที่ลิงค์
+            // บล็อกการเปิดหน้าต่างใหม่ในกรณีที่ pop-up ถูกเปิดจากการคลิกที่ลิงค์
             window.open = function() { return null; };
 
-            // การบล็อกการใช้สถานะหรือการแจ้งเตือน
-            window.onbeforeunload = function() {
-                return null; // ปิดการแสดงการแจ้งเตือนเมื่อพยายามปิดหน้าหรือเปลี่ยนหน้า
-            };
-
-            // การใช้ MutationObserver เพื่อลบ Pop-up ที่ถูกเพิ่มมาใหม่
-            const observer = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation) {
-                    mutation.addedNodes.forEach(function(node) {
-                        if (node.nodeName === 'DIV' || node.nodeName === 'IFRAME' || node.nodeName === 'SPAN') {
-                            if (node.style.display === 'block' || node.classList.contains('popup') || node.classList.contains('overlay')) {
-                                node.remove(); // ลบป๊อปอัพที่เพิ่มเข้ามาใหม่
-                            }
-                        }
-                    });
-                });
+            // บล็อกการใช้งาน window.location ที่อาจเปิดแอป
+            var originalLocation = window.location;
+            Object.defineProperty(window, 'location', {
+                get: function() {
+                    return originalLocation;
+                },
+                set: function(value) {
+                    if (value.includes('intent://') || value.includes('com.wiseplay')) {
+                        console.log("Prevented opening app through window.location: " + value);
+                        return; // ป้องกันการเปิดแอป
+                    } else {
+                        originalLocation = value; // เปิดการทำงานปกติสำหรับ URL อื่น ๆ
+                    }
+                }
             });
 
-            // เริ่มการเฝ้าระวังใน body
-            observer.observe(document.body, { childList: true, subtree: true });
+            // การบล็อกการเปิดหน้าต่างใหม่จาก link
+            var links = document.querySelectorAll('a');
+            links.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    var href = link.getAttribute('href');
+                    if (href && href.includes('intent://')) {
+                        event.preventDefault(); // ปิดการเปิดแอปจาก link
+                        console.log("Blocked link that would open app: " + href);
+                    }
+                });
+            });
 
             console.log('โฆษณาและ Pop-up ถูกบล็อกเรียบร้อยแล้ว');
         };
