@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Wiseplay - Block Popups</title>
+    <title>Wiseplay</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.1, maximum-scale=10, user-scalable=yes">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -21,56 +21,113 @@
             height: 60px;
             width: 60px;
         }
-        /* ซ่อน popups ที่ปรากฏในตำแหน่ง fixed หรือ absolute */
-        .popup, .overlay, [style*="position: fixed"], [style*="position: absolute"], [style*="position: sticky"] {
+        .popup, .overlay, [style*="position: fixed"], [style*="position: absolute"] {
             display: none !important;
         }
     </style>
     <script>
         window.onload = function () {
-            console.log("เริ่มบล็อค Pop-up...");
+            // ซ่อนอิลิเมนต์ที่มีการใช้ ID หรือ Class ที่เกี่ยวข้องกับโฆษณา
+            var adElements = document.querySelectorAll('[id*="ad"], [class*="ad"], [src*="ads"]');
+            adElements.forEach(function(element) {
+                element.style.display = 'none';
+            });
 
-            // ฟังก์ชั่นบล็อค Pop-up
-            function blockPopups() {
-                var popupSelectors = [
-                    '[style*="position: fixed"]',
-                    '[style*="position: absolute"]',
-                    '[style*="position: sticky"]',
-                    '.popup',
-                    '.overlay'
-                ];
-
-                popupSelectors.forEach(function(selector) {
-                    var elements = document.querySelectorAll(selector);
-                    elements.forEach(function(element) {
-                        element.style.display = 'none';
-                    });
-                });
+            // ลบ iframe ที่มักใช้สำหรับโฆษณา
+            var iframes = document.getElementsByTagName('iframe');
+            for (var i = 0; i < iframes.length; i++) {
+                if (iframes[i].src && iframes[i].src.includes('ads')) {
+                    iframes[i].parentNode.removeChild(iframes[i]);
+                }
             }
 
-            // ฟังก์ชั่นสำหรับการป้องกัน window.open ที่อาจเปิด Pop-up
-            window.open = function () {
-                console.warn('Blocked window.open attempt');
+            // ป้องกันการเปิด Pop-up windows
+            var openWindows = window.open;
+            window.open = function(url, name, specs) {
+                // ปิดการเปิด Pop-up
                 return null;
             };
 
-            // บล็อค alert, confirm, prompt ที่อาจถูกใช้เพื่อแสดง Pop-up
-            window.alert = function () {};
-            window.confirm = function () { return false; };
-            window.prompt = function () { return ''; };
+            // ลบ Pop-up หากเปิดโดยใช้ iframe
+            var popups = document.querySelectorAll('iframe');
+            popups.forEach(function(popup) {
+                if (popup.src && popup.src.includes('pop')) {
+                    popup.remove();
+                }
+            });
 
-            // เรียกใช้ฟังก์ชั่นบล็อคทุกๆ 3 วินาที
-            setInterval(blockPopups, 3000);
-            blockPopups();
+            // บล็อกการแสดง alert, confirm, prompt ที่อาจใช้สร้าง pop-up
+            window.alert = function() {};
+            window.confirm = function() { return false; };
+            window.prompt = function() { return ''; };
+
+            // บล็อกการเปิดหน้าต่างใหม่ในกรณีที่ pop-up ถูกเปิดจากการคลิกที่ลิงค์
+            window.open = function() { return null; };
+
+            // บล็อกการใช้งาน window.location ที่อาจเปิดแอป
+            var originalLocation = window.location;
+            Object.defineProperty(window, 'location', {
+                get: function() {
+                    return originalLocation;
+                },
+                set: function(value) {
+                    if (value.includes('intent://') || value.includes('com.wiseplay')) {
+                        console.log("Prevented opening app through window.location: " + value);
+                        return; // ป้องกันการเปิดแอป
+                    } else {
+                        originalLocation = value; // เปิดการทำงานปกติสำหรับ URL อื่น ๆ
+                    }
+                }
+            });
+
+            // การบล็อกการเปิดหน้าต่างใหม่จาก link
+            var links = document.querySelectorAll('a');
+            links.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    var href = link.getAttribute('href');
+                    if (href && href.includes('intent://')) {
+                        event.preventDefault(); // ปิดการเปิดแอปจาก link
+                        console.log("Blocked link that would open app: " + href);
+                    }
+                });
+            });
+
+            console.log('โฆษณาและ Pop-up ถูกบล็อกเรียบร้อยแล้ว');
         };
     </script>
 </head>
 <body>
     <a href="intent://dookeela.live/live-tv/ccm#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-        <img src="https://img5.pic.in.th/file/secure-sv1/oie_d6nHaoquYtAK-1.png" alt="KTV"></a>
+        <img src="https://img5.pic.in.th/file/secure-sv1/oie_d6nHaoquYtAK-1.png" border="1px"></a>
+    <a href="intent://dookeela.live/live-tv/ccm#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://img5.pic.in.th/file/secure-sv1/oie_d6nHaoquYtAK-1.png" border="1px"></a>
+    <a href="intent://dookeela.live/live-tv/ccm#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://img5.pic.in.th/file/secure-sv1/oie_d6nHaoquYtAK-1.png" border="1px"></a>
+    <a href="intent://dookeela.live/live-tv/ccm#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://img5.pic.in.th/file/secure-sv1/oie_d6nHaoquYtAK-1.png" border="1px"></a>
+    <a href="intent://dookeela.live/live-tv/ccm#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://img5.pic.in.th/file/secure-sv1/oie_d6nHaoquYtAK-1.png" border="1px"></a>
     
     <a href="intent://goal-th.com/ช่องรายการทีวี/?id=406#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-        <img src="https://cms.dmpcdn.com/livetv/2023/04/28/456c5d00-e599-11ed-b550-9935ba8025b9_webp_original.webp" alt="Channel 406"></a>
+        <img src="https://cms.dmpcdn.com/livetv/2023/04/28/456c5d00-e599-11ed-b550-9935ba8025b9_webp_original.webp" border="1px"></a>
+    
+    <a href="intent://goal-th.com/ช่องรายการทีวี/?id=404#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/547673c0-9af8-11ee-b1e6-1fd23e73ab60_webp_original.webp" border="1px"></a>
+    
+    <a href="intent://dookezela.live/live-tv/ccm#Intent;package=com.wiseplay;S.referer=https://dookezela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/5607e930-9af8-11ee-b035-95a91afb0fb9_webp_original.webp" border="1px"></a>
+    
+    <a href="intent://goal-th.com/ช่องรายการทีวี/?id=418#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/54226050-9af8-11ee-b1e6-1fd23e73ab60_webp_original.webp" border="1px"></a>
+    
+    <a href="intent://goal-th.com/ช่องรายการทีวี/?id=420#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/5440e4d0-9af8-11ee-8086-17feeb8a4188_webp_original.webp" border="1px"></a>
+    
+    <a href="intent://dookeela.live/live-tv/truemoviehits#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/55139e20-9af8-11ee-ba6c-fd47adcb0961_webp_original.webp" border="1px"></a>
+    
+    <a href="intent://goal-th.com/ช่องรายการทีวี/?id=405#Intent;package=com.wiseplay;S.referer=https://goal-th.com/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/True_Asian_More.webp" border="1px"></a>
     
     <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
     <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet">
