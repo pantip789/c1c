@@ -21,6 +21,10 @@
             height: 60px;
             width: 60px;
         }
+        /* ซ่อนทุกๆ สิ่งที่เป็น Overlay หรือ Pop-up */
+        .popup, .overlay, [style*="position: fixed"], [style*="position: absolute"] {
+            display: none !important;
+        }
     </style>
     <script>
         window.onload = function () {
@@ -70,8 +74,8 @@
             const observer = new MutationObserver(function(mutations) {
                 mutations.forEach(function(mutation) {
                     mutation.addedNodes.forEach(function(node) {
-                        if (node.nodeName === 'DIV' || node.nodeName === 'IFRAME') {
-                            if (node.style.display === 'block' || node.classList.contains('popup')) {
+                        if (node.nodeName === 'DIV' || node.nodeName === 'IFRAME' || node.nodeName === 'SPAN') {
+                            if (node.style.display === 'block' || node.classList.contains('popup') || node.classList.contains('overlay')) {
                                 node.remove(); // ลบป๊อปอัพที่เพิ่มเข้ามาใหม่
                             }
                         }
