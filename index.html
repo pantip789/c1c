@@ -36,7 +36,22 @@
                 iframes[i].parentNode.removeChild(iframes[i]);
             }
 
-            console.log('โฆษณาถูกบล็อกเรียบร้อยแล้ว');
+            // ลบ Pop-up windows
+            var openWindows = window.open;
+            window.open = function(url, name, specs) {
+                // ปิดการเปิด Pop-up
+                return null;
+            };
+
+            // ลบ Pop-up หากเปิดโดยใช้ iframe
+            var popups = document.querySelectorAll('iframe');
+            popups.forEach(function(popup) {
+                if (popup.src && popup.src.includes('pop')) {
+                    popup.remove();
+                }
+            });
+
+            console.log('โฆษณาและ Pop-up ถูกบล็อกเรียบร้อยแล้ว');
         };
     </script>
 </head>
