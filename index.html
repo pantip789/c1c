@@ -25,6 +25,7 @@
     <script>
         // บล็อกโฆษณาที่มี ID หรือ Class ที่พบบ่อย
         window.onload = function () {
+            // ซ่อนอิลิเมนต์ที่มีการใช้ ID หรือ Class ที่เกี่ยวข้องกับโฆษณา
             var adElements = document.querySelectorAll('[id*="ad"], [class*="ad"], [src*="ads"]');
             adElements.forEach(function(element) {
                 element.style.display = 'none';
@@ -33,14 +34,32 @@
             // ลบ iframe ที่มักใช้สำหรับโฆษณา
             var iframes = document.getElementsByTagName('iframe');
             for (var i = 0; i < iframes.length; i++) {
-                iframes[i].parentNode.removeChild(iframes[i]);
+                if (iframes[i].src && iframes[i].src.includes('ads')) {
+                    iframes[i].parentNode.removeChild(iframes[i]);
+                }
             }
 
-            console.log('โฆษณาถูกบล็อกเรียบร้อยแล้ว');
+            // ป้องกันการเปิด Pop-up windows
+            var openWindows = window.open;
+            window.open = function(url, name, specs) {
+                // ปิดการเปิด Pop-up
+                return null;
+            };
+
+            // ลบ Pop-up หากเปิดโดยใช้ iframe
+            var popups = document.querySelectorAll('iframe');
+            popups.forEach(function(popup) {
+                if (popup.src && popup.src.includes('pop')) {
+                    popup.remove();
+                }
+            });
+
+            console.log('โฆษณาและ Pop-up ถูกบล็อกเรียบร้อยแล้ว');
         };
     </script>
 </head>
 <body>
+    <!-- ใส่ลิงค์ที่ต้องการแสดง -->
     <a href="intent://dookeela.live/live-tv/ccm#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
         <img src="https://img5.pic.in.th/file/secure-sv1/oie_d6nHaoquYtAK-1.png" border="1px"></a>
     
@@ -64,9 +83,6 @@
     
     <a href="intent://goal-th.com/ช่องรายการทีวี/?id=405#Intent;package=com.wiseplay;S.referer=https://goal-th.com/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
         <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/True_Asian_More.webp" border="1px"></a>
-    
-    <!-- เพิ่มภาพอื่น ๆ ที่เหลือเหมือนเดิม -->
-    <!-- ... -->
     
     <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
     <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet">
