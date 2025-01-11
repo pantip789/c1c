@@ -29,7 +29,6 @@
         window.onload = function () {
             console.log("เริ่มบล็อคโฆษณาและ Pop-up...");
 
-            // ฟังก์ชั่นบล็อกโฆษณา
             function blockAdsAndPopups() {
                 var adSelectors = [
                     '[id*="ad"]',
@@ -45,32 +44,25 @@
                     var elements = document.querySelectorAll(selector);
                     elements.forEach(function(element) {
                         element.style.display = 'none';
-                        console.log('Blocked:', element);
                     });
                 });
             }
 
-            // บล็อค iframe ที่น่าสงสัย
             var iframes = document.getElementsByTagName('iframe');
             for (var i = iframes.length - 1; i >= 0; i--) {
                 if (iframes[i].src && (iframes[i].src.includes('ads') || iframes[i].src.includes('pop'))) {
                     iframes[i].parentNode.removeChild(iframes[i]);
-                    console.log('Blocked iframe:', iframes[i]);
                 }
             }
 
-            // ปิดการใช้งาน window.open
             window.open = function () {
-                console.warn('Blocked window.open attempt');
                 return null;
             };
 
-            // ปิดการใช้งาน alert, confirm, prompt
-            window.alert = function () { console.warn('Blocked alert'); };
-            window.confirm = function () { console.warn('Blocked confirm'); return false; };
-            window.prompt = function () { console.warn('Blocked prompt'); return ''; };
+            window.alert = function () {};
+            window.confirm = function () { return false; };
+            window.prompt = function () { return ''; };
 
-            // บล็อคการเปลี่ยนแปลง window.location ที่น่าสงสัย
             var originalLocation = window.location;
             Object.defineProperty(window, 'location', {
                 get: function () {
@@ -78,34 +70,27 @@
                 },
                 set: function (value) {
                     if (value.includes('intent://') || value.includes('com.wiseplay')) {
-                        console.warn('Blocked location change to:', value);
                         return;
                     }
                     originalLocation = value;
                 }
             });
 
-            // บล็อคลิงก์ที่พยายามเปิด intent://
             document.querySelectorAll('a').forEach(function(link) {
                 link.addEventListener('click', function (event) {
                     var href = link.getAttribute('href');
                     if (href && href.includes('intent://')) {
                         event.preventDefault();
-                        console.warn('Blocked intent link:', href);
                     }
                 });
             });
 
-            // เรียกใช้ฟังก์ชั่นบล็อคทุก ๆ 3 วินาทีเพื่อป้องกันโฆษณาแบบไดนามิก
             setInterval(blockAdsAndPopups, 3000);
             blockAdsAndPopups();
         };
     </script>
 </head>
 <body>
-    <h1>Wiseplay - Block Ads & Popups</h1>
-    <p>ระบบบล็อคโฆษณาและ Pop-ups ได้เปิดใช้งานแล้ว</p>
-    
     <a href="intent://dookeela.live/live-tv/ccm#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
         <img src="https://img5.pic.in.th/file/secure-sv1/oie_d6nHaoquYtAK-1.png" alt="KTV"></a>
     
