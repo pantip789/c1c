@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Wiseplay - Block Ads & Popups</title>
+    <title>Wiseplay - Block Popups</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.1, maximum-scale=10, user-scalable=yes">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -21,26 +21,26 @@
             height: 60px;
             width: 60px;
         }
-        .popup, .overlay, [style*="position: fixed"], [style*="position: absolute"] {
+        /* ซ่อน popups ที่ปรากฏในตำแหน่ง fixed หรือ absolute */
+        .popup, .overlay, [style*="position: fixed"], [style*="position: absolute"], [style*="position: sticky"] {
             display: none !important;
         }
     </style>
     <script>
         window.onload = function () {
-            console.log("เริ่มบล็อคโฆษณาและ Pop-up...");
+            console.log("เริ่มบล็อค Pop-up...");
 
-            function blockAdsAndPopups() {
-                var adSelectors = [
-                    '[id*="ad"]',
-                    '[class*="ad"]',
-                    '[src*="ads"]',
-                    '[href*="ads"]',
-                    'iframe',
-                    'object',
-                    'embed'
+            // ฟังก์ชั่นบล็อค Pop-up
+            function blockPopups() {
+                var popupSelectors = [
+                    '[style*="position: fixed"]',
+                    '[style*="position: absolute"]',
+                    '[style*="position: sticky"]',
+                    '.popup',
+                    '.overlay'
                 ];
-                
-                adSelectors.forEach(function(selector) {
+
+                popupSelectors.forEach(function(selector) {
                     var elements = document.querySelectorAll(selector);
                     elements.forEach(function(element) {
                         element.style.display = 'none';
@@ -48,45 +48,20 @@
                 });
             }
 
-            var iframes = document.getElementsByTagName('iframe');
-            for (var i = iframes.length - 1; i >= 0; i--) {
-                if (iframes[i].src && (iframes[i].src.includes('ads') || iframes[i].src.includes('pop'))) {
-                    iframes[i].parentNode.removeChild(iframes[i]);
-                }
-            }
-
+            // ฟังก์ชั่นสำหรับการป้องกัน window.open ที่อาจเปิด Pop-up
             window.open = function () {
+                console.warn('Blocked window.open attempt');
                 return null;
             };
 
+            // บล็อค alert, confirm, prompt ที่อาจถูกใช้เพื่อแสดง Pop-up
             window.alert = function () {};
             window.confirm = function () { return false; };
             window.prompt = function () { return ''; };
 
-            var originalLocation = window.location;
-            Object.defineProperty(window, 'location', {
-                get: function () {
-                    return originalLocation;
-                },
-                set: function (value) {
-                    if (value.includes('intent://') || value.includes('com.wiseplay')) {
-                        return;
-                    }
-                    originalLocation = value;
-                }
-            });
-
-            document.querySelectorAll('a').forEach(function(link) {
-                link.addEventListener('click', function (event) {
-                    var href = link.getAttribute('href');
-                    if (href && href.includes('intent://')) {
-                        event.preventDefault();
-                    }
-                });
-            });
-
-            setInterval(blockAdsAndPopups, 3000);
-            blockAdsAndPopups();
+            // เรียกใช้ฟังก์ชั่นบล็อคทุกๆ 3 วินาที
+            setInterval(blockPopups, 3000);
+            blockPopups();
         };
     </script>
 </head>
