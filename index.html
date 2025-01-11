@@ -40,9 +40,23 @@
             console.log('โฆษณาถูกบล็อกเรียบร้อยแล้ว');
         }
 
+        // ฟังก์ชันสำหรับบล็อก Pop Up
+        function blockPopUp() {
+            // ปิด Pop Up ที่มี ID หรือ Class ที่เกี่ยวข้อง
+            var popUpElements = document.querySelectorAll('[id*="popup"], [class*="popup"], [id*="modal"], [class*="modal"]');
+            popUpElements.forEach(function(element) {
+                element.style.display = 'none'; // ซ่อน Pop Up ที่พบ
+                console.log('Pop Up ถูกปิด');
+            });
+        }
+
         window.onload = function() {
-            blockAds(); // เรียกใช้ฟังก์ชันบล็อกโฆษณาเมื่อหน้าโหลดเสร็จ
+            blockAds();  // เรียกใช้ฟังก์ชันบล็อกโฆษณาเมื่อหน้าโหลดเสร็จ
+            blockPopUp(); // เรียกใช้ฟังก์ชันบล็อก Pop Up เมื่อหน้าโหลดเสร็จ
         };
+
+        // ตรวจสอบ Pop Up ที่อาจเปิดขึ้นหลังจากโหลดหน้า
+        setInterval(blockPopUp, 2000); // ตรวจสอบทุกๆ 2 วินาที
     </script>
 </head>
 <body>
