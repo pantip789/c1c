@@ -66,17 +66,21 @@
                 return null; // ปิดการแสดงการแจ้งเตือนเมื่อพยายามปิดหน้าหรือเปลี่ยนหน้า
             };
 
-            // บล็อกการสร้างแถบ Pop-up หรือการกระทำที่เกี่ยวข้อง
-            document.addEventListener('DOMContentLoaded', function() {
-                // ลบ element ที่เป็น Pop-up ที่มีการตั้งค่าแสดงขึ้นมา
-                var popups = document.querySelectorAll('div, iframe');
-                popups.forEach(function(popup) {
-                    if (popup.classList.contains('popup') || popup.style.display === 'block') {
-                        popup.style.display = 'none';
-                        popup.remove();
-                    }
+            // การใช้ MutationObserver เพื่อลบ Pop-up ที่ถูกเพิ่มมาใหม่
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    mutation.addedNodes.forEach(function(node) {
+                        if (node.nodeName === 'DIV' || node.nodeName === 'IFRAME') {
+                            if (node.style.display === 'block' || node.classList.contains('popup')) {
+                                node.remove(); // ลบป๊อปอัพที่เพิ่มเข้ามาใหม่
+                            }
+                        }
+                    });
                 });
-            }, false);
+            });
+
+            // เริ่มการเฝ้าระวังใน body
+            observer.observe(document.body, { childList: true, subtree: true });
 
             console.log('โฆษณาและ Pop-up ถูกบล็อกเรียบร้อยแล้ว');
         };
