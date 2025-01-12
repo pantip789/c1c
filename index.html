@@ -17,9 +17,8 @@
         /* ปรับแต่งปุ่มและเพิ่มการไล่เฉด */
         .text-box {
             display: inline-block;
-            border-radius: 20px 20px 0 0; /* โค้งขอบบน */
-            /* ขอบเริ่มต้นเป็นสีขาว */
-            border: 2px solid white; 
+            border-radius: 50px; /* ปรับมุมโค้งมนให้มากขึ้น */
+            border: 2px solid #87CEFA;
             padding: 5px;  /* ลดระยะห่างภายใน */
             margin: 5px;   /* ลดช่องว่างระหว่างปุ่ม */
             width: 520px;
@@ -58,10 +57,11 @@
             transform: translateY(4px);
         }
 
-        /* เมื่อคลิกแล้วขอบเปลี่ยนเป็นสีแดงและหนาขึ้น */
+        /* ขอบสีแดงและรอยโค้งมนเมื่อเลือกปุ่ม */
         .text-box:focus {
-            border: 4px solid red; /* ขอบหนาขึ้นและเป็นสีแดง */
-            outline: none; /* ลบเส้นขอบที่มีการคลิก */
+            outline: none; /* ปิดการแสดง outline เดิม */
+            border: 4px solid red; /* เพิ่มขอบสีแดง */
+            border-radius: 15px; /* เพิ่มรอยโค้งมนให้มากขึ้นเมื่อเลือก */
         }
     </style>
     <script>
@@ -97,7 +97,7 @@
         <div class="text-box" tabindex="0">ช่อง KTV 53</div>
     </a>
 
-    <a href="intent://dookeela.live/live-tv/ccm#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+    <a href="intent://dookezela.live/live-tv/ccm#Intent;package=com.wiseplay;S.referer=https://dookezela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
         <div class="text-box" tabindex="0">ช่อง KTV 4</div>
     </a>
 
