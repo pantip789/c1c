@@ -3,7 +3,7 @@
 <head>
     <title>Wiseplay</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.1, maximum-scale=10, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.1, maximum-scale=10, user-scalable=yes">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
         body {
@@ -13,108 +13,81 @@
             text-align: center;
             font-family: Arial, sans-serif;
         }
-
-        /* ปรับแต่งปุ่มและเพิ่มการไล่เฉด */
-        .text-box {
-            display: inline-block;
-            border-radius: 50px; /* ปรับมุมโค้งมนให้มากขึ้น */
-            border: 2px solid #87CEFA;
-            padding: 5px;  /* ลดระยะห่างภายใน */
-            margin: 5px;   /* ลดช่องว่างระหว่างปุ่ม */
-            width: 520px;
-            height: 520px;
-            line-height: 210px;  /* ปรับให้อยู่กลาง */
-            text-align: center;
-            font-size: 140px; /* ขยายขนาดข้อความ */
-            font-weight: 900; /* เพิ่มความหนาของข้อความ */
-            color: white;
-            cursor: pointer;
-            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7), 
-                        -4px -4px 10px rgba(255, 255, 255, 0.1);
-            background: linear-gradient(145deg, #1e90ff, #87cefa);
-            transition: all 0.3s ease-in-out;
-            animation: blinkText 1s infinite alternate; /* ทำให้ข้อความกระพริบ */
+        img {
+            border-radius: 15px; /* ทำให้มุมโค้งมนมากขึ้น */
+            border: 1px solid #87CEFA;
+            padding: 2px;
+            margin: 3px;
+            height: 60px;
+            width: 60px;
+            transition: border-radius 0.3s ease; /* เพิ่มการเปลี่ยนแปลงขณะเลือก */
         }
-
-        /* เอฟเฟกต์ไฟกระพริบ */
-        @keyframes blinkText {
-            0% { color: white; }
-            100% { color: yellow; } 
-        }
-
-        /* เอฟเฟกต์เมื่อเอาเมาส์ไปวาง */
-        .text-box:hover {
-            background: linear-gradient(145deg, #87cefa, #1e90ff);
-            box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.7), 
-                        inset -4px -4px 10px rgba(255, 255, 255, 0.1);
-            transform: translateY(2px);
-        }
-
-        /* เอฟเฟกต์เมื่อคลิก */
-        .text-box:active {
-            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.7), 
-                        inset -2px -2px 5px rgba(255, 255, 255, 0.1);
-            transform: translateY(4px);
-        }
-
-        /* ขอบสีแดงและรอยโค้งมนเมื่อเลือกปุ่ม */
-        .text-box:focus {
-            outline: none; /* ปิดการแสดง outline เดิม */
-            border: 4px solid red; /* เพิ่มขอบสีแดง */
-            border-radius: 15px; /* เพิ่มรอยโค้งมนให้มากขึ้นเมื่อเลือก */
+        img:active, img:focus {
+            border-radius: 0px; /* เมื่อคลิกหรือเลือกให้มุมเป็นสี่เหลี่ยม */
         }
     </style>
     <script>
-        // ฟังก์ชันสำหรับบล็อกโฆษณา
-        function blockAds() {
+        // บล็อกโฆษณาที่มี ID หรือ Class ที่พบบ่อย
+        window.onload = function () {
             var adElements = document.querySelectorAll('[id*="ad"], [class*="ad"], [src*="ads"]');
             adElements.forEach(function(element) {
-                element.style.display = 'none'; 
+                element.style.display = 'none';
             });
 
+            // ลบ iframe ที่มักใช้สำหรับโฆษณา
             var iframes = document.getElementsByTagName('iframe');
             for (var i = 0; i < iframes.length; i++) {
-                iframes[i].parentNode.removeChild(iframes[i]); 
+                iframes[i].parentNode.removeChild(iframes[i]);
             }
-            console.log('โฆษณาถูกบล็อกเรียบร้อยแล้ว');
-        }
 
-        window.onload = function() {
-            blockAds(); 
+            // ลบ Pop-up windows
+            var openWindows = window.open;
+            window.open = function(url, name, specs) {
+                // ปิดการเปิด Pop-up
+                return null;
+            };
+
+            // ลบ Pop-up หากเปิดโดยใช้ iframe
+            var popups = document.querySelectorAll('iframe');
+            popups.forEach(function(popup) {
+                if (popup.src && popup.src.includes('pop')) {
+                    popup.remove();
+                }
+            });
+
+            console.log('โฆษณาและ Pop-up ถูกบล็อกเรียบร้อยแล้ว');
         };
     </script>
 </head>
 <body>
     <a href="intent://dookeela.live/live-tv/ccm#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-        <div class="text-box" tabindex="0">ช่อง KTV 1</div>
-    </a>
-
+        <img src="https://img5.pic.in.th/file/secure-sv1/oie_d6nHaoquYtAK-1.png" border="1px"></a>
+    
     <a href="intent://goal-th.com/ช่องรายการทีวี/?id=406#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-        <div class="text-box" tabindex="0">ช่อง KTV 2</div>
-    </a>
-
+        <img src="https://cms.dmpcdn.com/livetv/2023/04/28/456c5d00-e599-11ed-b550-9935ba8025b9_webp_original.webp" border="1px"></a>
+    
     <a href="intent://goal-th.com/ช่องรายการทีวี/?id=404#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-        <div class="text-box" tabindex="0">ช่อง KTV 53</div>
-    </a>
-
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/547673c0-9af8-11ee-b1e6-1fd23e73ab60_webp_original.webp" border="1px"></a>
+    
     <a href="intent://dookezela.live/live-tv/ccm#Intent;package=com.wiseplay;S.referer=https://dookezela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-        <div class="text-box" tabindex="0">ช่อง KTV 4</div>
-    </a>
-
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/5607e930-9af8-11ee-b035-95a91afb0fb9_webp_original.webp" border="1px"></a>
+    
     <a href="intent://goal-th.com/ช่องรายการทีวี/?id=418#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-        <div class="text-box" tabindex="0">ช่อง KTV 5</div>
-    </a>
-
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/54226050-9af8-11ee-b1e6-1fd23e73ab60_webp_original.webp" border="1px"></a>
+    
     <a href="intent://goal-th.com/ช่องรายการทีวี/?id=420#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-        <div class="text-box" tabindex="0">ช่อง KTV 6</div>
-    </a>
-
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/5440e4d0-9af8-11ee-8086-17feeb8a4188_webp_original.webp" border="1px"></a>
+    
     <a href="intent://dookeela.live/live-tv/truemoviehits#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-        <div class="text-box" tabindex="0">ช่อง KTV 7</div>
-    </a>
-
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/55139e20-9af8-11ee-ba6c-fd47adcb0961_webp_original.webp" border="1px"></a>
+    
     <a href="intent://goal-th.com/ช่องรายการทีวี/?id=405#Intent;package=com.wiseplay;S.referer=https://goal-th.com/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-        <div class="text-box" tabindex="0">ช่อง KTV 8</div>
-    </a>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/True_Asian_More.webp" border="1px"></a>
+    
+    <!-- เพิ่มภาพอื่น ๆ ที่เหลือเหมือนเดิม -->
+    <!-- ... -->
+    
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet">
 </body>
 </html>
