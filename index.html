@@ -33,67 +33,7 @@
                 element.style.display = 'none';
             });
 
-            // ลบ iframe ที่มักใช้สำหรับโฆษณา
-            var iframes = document.getElementsByTagName('iframe');
-            for (var i = 0; i < iframes.length; i++) {
-                if (iframes[i].src && iframes[i].src.includes('ads')) {
-                    iframes[i].parentNode.removeChild(iframes[i]);
-                }
-            }
 
-            // ป้องกันการเปิด Pop-up windows
-            var openWindows = window.open;
-            window.open = function(url, name, specs) {
-                // ปิดการเปิด Pop-up
-                return null;
-            };
-
-            // ลบ Pop-up หากเปิดโดยใช้ iframe
-            var popups = document.querySelectorAll('iframe');
-            popups.forEach(function(popup) {
-                if (popup.src && popup.src.includes('pop')) {
-                    popup.remove();
-                }
-            });
-
-            // บล็อกการแสดง alert, confirm, prompt ที่อาจใช้สร้าง pop-up
-            window.alert = function() {};
-            window.confirm = function() { return false; };
-            window.prompt = function() { return ''; };
-
-            // บล็อกการเปิดหน้าต่างใหม่ในกรณีที่ pop-up ถูกเปิดจากการคลิกที่ลิงค์
-            window.open = function() { return null; };
-
-            // บล็อกการใช้งาน window.location ที่อาจเปิดแอป
-            var originalLocation = window.location;
-            Object.defineProperty(window, 'location', {
-                get: function() {
-                    return originalLocation;
-                },
-                set: function(value) {
-                    if (value.includes('intent://') || value.includes('com.wiseplay')) {
-                        console.log("Prevented opening app through window.location: " + value);
-                        return; // ป้องกันการเปิดแอป
-                    } else {
-                        originalLocation = value; // เปิดการทำงานปกติสำหรับ URL อื่น ๆ
-                    }
-                }
-            });
-
-            // การบล็อกการเปิดหน้าต่างใหม่จาก link
-            var links = document.querySelectorAll('a');
-            links.forEach(function(link) {
-                link.addEventListener('click', function(event) {
-                    var href = link.getAttribute('href');
-                    if (href && href.includes('intent://')) {
-                        event.preventDefault(); // ปิดการเปิดแอปจาก link
-                        console.log("Blocked link that would open app: " + href);
-                    }
-                });
-            });
-
-            console.log('โฆษณาและ Pop-up ถูกบล็อกเรียบร้อยแล้ว');
-        };
     </script>
 </head>
 <body>
@@ -101,10 +41,10 @@
         <img src="https://media-mvtv-app.imgix.net/channel/132_y_TFYiXWvrUf4s8tbIwJ29S3zMNeqghGmB.png" border="1px">
     </a>
     <a href="intent://cdn1.googlecdn.live/4k/ch5hd/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/;scheme=https;type=video/mp4;end '">
-        <img src="https://ais-s.ais-vidnt.com/ais/play/origin/LIVE///channelicon//beIN_SPORTS_2.png" alt="beIN SPORTS 2">
+        <img src="https://ais-s.ais-vidnt.com/ais/play/origin/LIVE/channelicon/ch5new.logo.png" alt="beIN SPORTS 2">
     </a>
-    <a href="intent://dookeela.live/live-tv/epl1_sd#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=http;type=video/mp4;end">
-        <img src="https://cms.dmpcdn.com/livetv/2023/05/03/ba425a00-e966-11ed-be07-cbff4c6d2c94_webp_original.webp" alt="EPL 1">
+<a href="intent://cdn1.googlecdn.live/4k/ch7hd/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/;scheme=https;type=video/mp4;end ">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Ch-7-HD-Logo-crop.png" alt="beIN SPORTS 3">
     </a>
     <a href="intent://cdn1.googlecdn.live/4k/ch7hd/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/;scheme=https;type=video/mp4;end ">
         <img src="https://ais-s.ais-vidnt.com/ais/play/origin/LIVE///channelicon//beIN_SPORTS_3.png" alt="beIN SPORTS 3">
@@ -122,7 +62,7 @@
         <img src="https://ais-s.ais-vidnt.com/ais/play/origin/LIVE///channelicon//beIN_SPORTS_3.png" alt="beIN SPORTS 3">
     </a>
     <a href="intent://dookeela.live/live-tv/epl1_sd#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=http;type=video/mp4;end">
-        <img src="https://cms.dmpcdn.com/livetv/2023/05/03/ba425a00-e966-11ed-be07-cbff4c6d2c94_webp_original.webp" alt="EPL 1">
+        <img src="https://cms-mvtv-app-v2.v2h-cdn.com:8001/uploads/channel/153_x_SzQKXykmul5cOFUaMhvC1nfLR4YNpg9H.jpg" alt="True Movie Hits">
     </a>
     <a href="intent://dookeela.live/live-tv/epl2#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=http;type=video/mp4;end">
         <img src="https://cms.dmpcdn.com/livetv/2023/05/03/ba4c4510-e966-11ed-896e-69ce273284a6_webp_original.webp" alt="EPL 2">
