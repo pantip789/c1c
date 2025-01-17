@@ -1,203 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Wiseplay Categories</title>
+    <title>Wiseplay</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.1, maximum-scale=10, user-scalable=yes">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        background-color: #000;
-        color: #fff;
-        text-align: center;
-        font-family: 'Arial', sans-serif;
-    }
-
-    h1 {
-        font-size: 2.5rem;
-        margin-top: 20px;
-    }
-
-    #menu {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin: 0; 
-        flex-wrap: wrap;
-        overflow-x: auto;
-        padding: 0;
-        width: 100%;
-    }
-
-    #menu img {
-        height: 80px;
-        width: 80px;
-        border-radius: 50%; 
-        border: 3px solid #87CEFA;
-        padding: 5px;
-        cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    #menu img:hover {
-        transform: scale(1.1);
-        box-shadow: 0 0 15px #87CEFA;
-    }
-
-    .category {
-        display: none; 
-        padding: 0px;  /* ลด padding ให้แคบลง */
-        margin: 0px auto; /* ลดระยะห่างให้น้อยที่สุด */
-        max-width: 100%;
-        background-color: transparent;
-    }
-
-    h2 {
-        color: #87CEFA;
-        font-size: 2rem;
-    }
-
-    img.channel {
-        border-radius: 15px;
-        border: 3px solid #87CEFA;
-        padding: 2px;
-        margin: 3px;
-        height: 80px;
-        width: 80px;
-        object-fit: cover;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    img.channel:hover {
-        transform: scale(1.1);
-        box-shadow: 0 0 15px #87CEFA;
-    }
-
-    #menu p {
-        font-size: 1rem;
-        color: #87CEFA;
-        margin-top: 5px;
-    }
-
+        body {
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        img {
+            border-radius: 20px;
+            border: 1px solid #87CEFA;
+            padding: 2px;
+            margin: 3px;
+            height: 80px;
+            width: 80px;
+        }
+        .popup, .overlay, [style*="position: fixed"], [style*="position: absolute"] {
+            display: none !important;
+        }
     </style>
     <script>
-        function showCategory(categoryId) {
-            document.querySelectorAll('.category').forEach(function(cat) {
-                cat.style.display = 'none';
+        window.onload = function () {
+            // ซ่อนอิลิเมนต์ที่มีการใช้ ID หรือ Class ที่เกี่ยวข้องกับโฆษณา
+            var adElements = document.querySelectorAll('[id*="ad"], [class*="ad"], [src*="ads"]');
+            adElements.forEach(function(element) {
+                element.style.display = 'none';
             });
-            document.getElementById(categoryId).style.display = 'block';
-        }
 
-        function showAllCategories() {
-            document.querySelectorAll('.category').forEach(function(cat) {
-                cat.style.display = 'block';
-                cat.style.marginBottom = '-10px'; // ปรับให้ระยะห่างระหว่างหมวดหมู่แคบลง
-                cat.style.padding = '-10px';       // ลด padding ให้แคบลง
-            });
-        }
+
     </script>
 </head>
 <body>
-    <h1>ALLTV</h1>
+<a href="intent://cdn1.googlecdn.live/4k/ch3hd/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/;scheme=https;type=video/mp4;end">
+        <img src="https://media-mvtv-app.imgix.net/channel/132_y_TFYiXWvrUf4s8tbIwJ29S3zMNeqghGmB.png" border="1px">
+    </a>
+    <a href="intent://cdn1.googlecdn.live/4k/ch5hd/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/;scheme=https;type=video/mp4;end '">
+        <img src="https://ais-s.ais-vidnt.com/ais/play/origin/LIVE/channelicon/ch5new.logo.png" alt="beIN SPORTS 2">
+    </a>
+<a href="intent://cdn1.googlecdn.live/4k/ch7hd/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/;scheme=https;type=video/mp4;end ">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Ch-7-HD-Logo-crop.png" alt="beIN SPORTS 3">
+    </a>
+    <a href="intent://cdn1.googlecdn.live/4k/ch7hd/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/;scheme=https;type=video/mp4;end ">
+        <img src="https://ais-s.ais-vidnt.com/ais/play/origin/LIVE///channelicon//beIN_SPORTS_3.png" alt="beIN SPORTS 3">
+    </a>
+    <a href="intent://cdn1.googlecdn.live/4k/ch3hd/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/;scheme=https;type=video/mp4;end">
+        <img src="https://media-mvtv-app.imgix.net/channel/132_y_TFYiXWvrUf4s8tbIwJ29S3zMNeqghGmB.png" border="1px">
+    </a>
+    <a href="intent://cdn1.googlecdn.live/4k/ch5hd/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/;scheme=https;type=video/mp4;end '">
+        <img src="https://ais-s.ais-vidnt.com/ais/play/origin/LIVE///channelicon//beIN_SPORTS_2.png" alt="beIN SPORTS 2">
+    </a>
+    <a href="intent://dookeela.live/live-tv/epl1_sd#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=http;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/05/03/ba425a00-e966-11ed-be07-cbff4c6d2c94_webp_original.webp" alt="EPL 1">
+    </a>
+    <a href="intent://cdn1.googlecdn.live/4k/ch7hd/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/;scheme=https;type=video/mp4;end ">
+        <img src="https://ais-s.ais-vidnt.com/ais/play/origin/LIVE///channelicon//beIN_SPORTS_3.png" alt="beIN SPORTS 3">
+    </a>
+    <a href="intent://edge6a.v2h-cdn.com/boomerang/boomerang.stream/chunklist_w1218519705.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=;scheme=https;type=video/mp4;end
+">
+        <img src="https://cms-mvtv-app-v2.v2h-cdn.com:8001/uploads/channel/153_x_SzQKXykmul5cOFUaMhvC1nfLR4YNpg9H.jpg" alt="True Movie Hits">
+    </a>
+    <a href="intent://dookeela.live/live-tv/epl2#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=http;type=video/mp4;end">
+        <img src="https://imรรรg.inwiptv.net/postor/20200512162950fw teletoon(1).jpg" alt="" onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';">
+   
+    </a>
+
+<a href="intent://dookeela.live/live-tv/epl3
+#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=http;type=video/mp4;end">
+<img src="https://cms.dmpcdn.com/livetv/2023/05/03/baf9ea30-e966-11ed-a3d3-f3f98ac7a1a1_webp_original.webp" border="1px"></a>
+
+
+<a href="intent://dookeela.live/live-tv/epl4
+#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=http;type=video/mp4;end">
+<img src="https://cms.dmpcdn.com/livetv/2023/05/03/bb0beb90-e966-11ed-993c-b59183950f79_webp_original.webp" border="1px"></a>
+
+
+<a href="intent://dookeela.live/live-tv/epl5
+#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=http;type=video/mp4;end">
+<img src="https://cms.dmpcdn.com/livetv/2023/05/03/bbea1690-e966-11ed-935b-df134f58d288_webp_original.webp" border="1px"></a>
+
+
+<a href="intent://dookeela.live/live-tv/tsp1
+#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=http;type=video/mp4;end">
+<img src="https://cms.dmpcdn.com/livetv/2023/12/15/74b619a0-9aea-11ee-a6ba-8b5bcfefee63_webp_original.webp" border="1px"></a>
+
+<a href="intent://dookeela.live/live-tv/tsp2
+#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=http;type=video/mp4;end">
+<img src="https://cms.dmpcdn.com/livetv/2023/12/15/74b6b5e0-9aea-11ee-ba6c-fd47adcb0961_webp_original.webp" border="1px"></a>
+
+<a href="intent://dooball2you.com/live/truesport3
+#Intent;package=com.wiseplay;S.referer=https://dooball2you.com/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+<img src="https://cms.dmpcdn.com/livetv/2023/12/15/75877360-9aea-11ee-a6ba-8b5bcfefee63_webp_original.webp" border="1px"></a>
+
+<a href="intent://wacthstream.com/stream_live/669_Ts_HD4/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9OC8xOC8yMDI0IDg6MTY6MjkgUE0maGFzaF92YWx1ZT1UQVdzUS9CdDhPY3ZjZndWWUkrYnZnPT0mdmFsaWRtaW51dGVzPTg2NDAwMDAwJnN0cm1fbGVuPTAmaWQ9Y2hfNTgzMjE=
+#Intent;package=com.wiseplay;S.title=KTV;S.referer=https://wacth.tv/;scheme=https;end">
+<img src="https://cms.dmpcdn.com/livetv/2023/12/15/759492c0-9aea-11ee-a6e1-935fb41ffad5_webp_original.webp" border="1px"></a>
+
+    <a href="intent://dookeela.live/live-tv/ccm#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://img5.pic.in.th/file/secure-sv1/oie_d6nHaoquYtAK-1.png" border="1px"></a>
+    <a href="intent://dookeela.live/live-tv/ccm#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://img5.pic.in.th/file/secure-sv1/oie_d6nHaoquYtAK-1.png" border="1px"></a>
+    <a href="intent://dookeela.live/live-tv/ccm#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://img5.pic.in.th/file/secure-sv1/oie_d6nHaoquYtAK-1.png" border="1px"></a>
+    <a href="intent://dookeela.live/live-tv/ccm#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://img5.pic.in.th/file/secure-sv1/oie_d6nHaoquYtAK-1.png" border="1px"></a>
+    <a href="intent://dookeela.live/live-tv/ccm#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://img5.pic.in.th/file/secure-sv1/oie_d6nHaoquYtAK-1.png" border="1px"></a>
     
-    <div id="menu">
-        <div>
-            
-        
-<img src="https://e7.pngegg.com/pngimages/605/905/png-clipart-free-pic-web-design-label-thumbnail.png" alt="FEER TV"onclick="showCategory('sports')" title="FEER TV">
-            <p>FEER TV</p>
-        </div>
-        <div>
-            <img src="https://www.pngarts.com/files/10/Cartoon-PNG-Background-Image.png" alt= "การ์ตูน" onclick="showCategory('การ์ตูน')" title="การ์ตูน">
-            <p>การ์ตูน</p>
-        </div>
-        <div>
-            <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png" alt="การ์ตูน" onclick="showCategory('การ์ตูน')" title="การ์ตูน">
-            <p>การ์ตูน</p>
-        </div>
-        <div>
-            <img src="https://cdn-icons-png.flaticon.com/512/1040/1040256.png" alt="กีฬา" onclick="showCategory('sports')" title="กีฬา">
-            <p>กีฬา</p>
-        </div>
-        <div>
-            <img src="https://cdn-icons-png.flaticon.com/512/1090/1090751.png" alt="รายการทีวี" onclick="showCategory('tvshows')" title="รายการทีวี">
-            <p>รายการทีวี</p>
-        </div>
-        <!-- เพิ่มปุ่มรวม -->
-        <div>
-            <img src="https://cdn-icons-png.flaticon.com/512/919/919851.png" alt="รวม" onclick="showAllCategories()" title="รวม">
-            <p>รวม</p>
-        </div>
-    </div>
+    <a href="intent://goal-th.com/ช่องรายการทีวี/?id=406#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/04/28/456c5d00-e599-11ed-b550-9935ba8025b9_webp_original.webp" border="1px"></a>
+    
+    <a href="intent://goal-th.com/ช่องรายการทีวี/?id=404#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/547673c0-9af8-11ee-b1e6-1fd23e73ab60_webp_original.webp" border="1px"></a>
+    
+    <a href="intent://dookezela.live/live-tv/ccm#Intent;package=com.wiseplay;S.referer=https://dookezela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/5607e930-9af8-11ee-b035-95a91afb0fb9_webp_original.webp" border="1px"></a>
+    
+    <a href="intent://goal-th.com/ช่องรายการทีวี/?id=418#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/54226050-9af8-11ee-b1e6-1fd23e73ab60_webp_original.webp" border="1px"></a>
+    
+    <a href="intent://goal-th.com/ช่องรายการทีวี/?id=420#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/5440e4d0-9af8-11ee-8086-17feeb8a4188_webp_original.webp" border="1px"></a>
+    
+    <a href="intent://dookeela.live/live-tv/truemoviehits#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/55139e20-9af8-11ee-ba6c-fd47adcb0961_webp_original.webp" border="1px"></a>
+    <a href="intent://dookeela.live/live-tv/truemoviehits#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/55139e20-9af8-11ee-ba6c-fd47adcb0961_webp_original.webp" border="1px"></a>
+    <a href="intent://dookeela.live/live-tv/truemoviehits#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/55139e20-9af8-11ee-ba6c-fd47adcb0961_webp_original.webp" border="1px"></a>
+    <a href="intent://dookeela.live/live-tv/truemoviehits#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/55139e20-9af8-11ee-ba6c-fd47adcb0961_webp_original.webp" border="1px"></a>
+    <a href="intent://dookeela.live/live-tv/truemoviehits#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/55139e20-9af8-11ee-ba6c-fd47adcb0961_webp_original.webp" border="1px"></a>
+    <a href="intent://dookeela.live/live-tv/truemoviehits#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/55139e20-9af8-11ee-ba6c-fd47adcb0961_webp_original.webp" border="1px"></a>
+    <a href="intent://dookeela.live/live-tv/truemoviehits#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/55139e20-9af8-11ee-ba6c-fd47adcb0961_webp_original.webp" border="1px"></a>
+    <a href="intent://dookeela.live/live-tv/truemoviehits#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/55139e20-9af8-11ee-ba6c-fd47adcb0961_webp_original.webp" border="1px"></a>
+    <a href="intent://dookeela.live/live-tv/truemoviehits#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/55139e20-9af8-11ee-ba6c-fd47adcb0961_webp_original.webp" border="1px"></a>
+    <a href="intent://dookeela.live/live-tv/truemoviehits#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/55139e20-9af8-11ee-ba6c-fd47adcb0961_webp_original.webp" border="1px"></a>
+    <a href="intent://dookeela.live/live-tv/truemoviehits#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
+        <img src="https://cms.dmpcdn.com/livetv/2023/12/15/55139e20-9af8-11ee-ba6c-fd47adcb0961_webp_original.webp" border="1px"></a>
+    
+    <a href="intent://cdn-th-vip.livestreaming.in.th/ch8/ch8/chunklist.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=;scheme=https;type=video/mp4;end">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Ch_8_2016.svg/440px-Ch_8_2016.svg.png" border="1px"></a>
+ 
 
-    <!-- หมวดหมู่ กีฬา -->
-    <div id="sports" class="category">
-        <h2>"FEER TV"</h2>
-                <a href="intent://goal-th.com/ช่องรายการทีวี/?id=406#Intent;package=com.wiseplay;S.title=กีฬา;scheme=https;type=video/mp4;end">
-            <img class="channel" src="https://cms.dmpcdn.com/livetv/2023/04/28/456c5d00-e599-11ed-b550-9935ba8025b9_webp_original.webp">
-        </a>
 
-        <!-- เพิ่ม class="channel" ให้ทุกภาพช่องรายการเพื่อให้มีขนาดเท่ากัน -->
-        <a href="intent://cdn1.googlecdn.live/4k/ch5hd/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/;scheme=https;type=video/mp4;end">
-            <img class="channel" src="https://ais-s.ais-vidnt.com/ais/play/origin/LIVE///channelicon//beIN_SPORTS_2.png" alt="beIN SPORTS 2">
-        </a>
-
-        <!-- เพิ่ม class="channel" ให้ทุกภาพช่องรายการเพื่อให้มีขนาดเท่ากัน -->
-        <a href="intent://dookeela.live/live-tv/epl1_sd#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=http;type=video/mp4;end">
-            <img class="channel" src="https://cms.dmpcdn.com/livetv/2023/05/03/ba425a00-e966-11ed-be07-cbff4c6d2c94_webp_original.webp" alt="EPL 1">
-        </a>
-        
-        <!-- เพิ่ม class="channel" ให้ทุกภาพช่องรายการเพื่อให้มีขนาดเท่ากัน -->
-        <a href="intent://cdn1.googlecdn.live/4k/ch3hd/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/;scheme=https;type=video/mp4;end">
-            <img class="channel" src="https://media-mvtv-app.imgix.net/channel/132_y_TFYiXWvrUf4s8tbIwJ29S3zMNeqghGmB.png">
-        </a>
-        <a href="intent://cdn1.googlecdn.live/4k/ch3hd/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/;scheme=https;type=video/mp4;end">
-            <img class="channel" src="https://media-mvtv-app.imgix.net/channel/132_y_TFYiXWvrUf4s8tbIwJ29S3zMNeqghGmB.png">
-        </a>
-        <a href="intent://cdn1.googlecdn.live/4k/ch3hd/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/;scheme=https;type=video/mp4;end">
-            <img class="channel" src="https://media-mvtv-app.imgix.net/channel/132_y_TFYiXWvrUf4s8tbIwJ29S3zMNeqghGmB.png">
-        </a>
-<a href="intent://cdn1.googlecdn.live/4k/ch3hd/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/;scheme=https;type=video/mp4;end">
-            <img class="channel" src="https://media-mvtv-app.imgix.net/channel/132_y_TFYiXWvrUf4s8tbIwJ29S3zMNeqghGmB.png">
-        </a>
-<a href="intent://cdn1.googlecdn.live/4k/ch3hd/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/;scheme=https;type=video/mp4;end">
-            <img class="channel" src="https://media-mvtv-app.imgix.net/channel/132_y_TFYiXWvrUf4s8tbIwJ29S3zMNeqghGmB.png">
-        </a>
-<a href="intent://cdn1.googlecdn.live/4k/ch3hd/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/;scheme=https;type=video/mp4;end">
-            <img class="channel" src="https://media-mvtv-app.imgix.net/channel/132_y_TFYiXWvrUf4s8tbIwJ29S3zMNeqghGmB.png">
-        </a>
-        
-    </div>
-
-    <!-- หมวดหมู่ หนัง -->
-    <div id="การ์ตูน" class="category">
-        <h2>การ์ตูน</h2>
-        <a href="intent://dookeela.live/live-tv/truemoviehits#Intent;package=com.wiseplay;S.title=หนัง;scheme=https;type=video/mp4;end">
-            <img class="channel" src="https://cms.dmpcdn.com/livetv/2023/12/15/55139e20-9af8-11ee-ba6c-fd47adcb0961_webp_original.webp">
-        </a>
-        <a href="intent://goal-th.com/ช่องรายการทีวี/?id=405#Intent;package=com.wiseplay;S.title=หนัง;scheme=https;type=video/mp4;end">
-            <img class="channel" src="https://upload.wikimedia.org/wikipedia/commons/e/e2/True_Asian_More.webp">
-        </a>
-    </div>
-
-    <!-- หมวดหมู่ รายการทีวี -->
-    <div id="tvshows" class="category">
-        <h2>รายการทีวี</h2>
-        <a href="intent://dookeela.live/live-tv/ccm#Intent;package=com.wiseplay;S.title=รายการทีวี;scheme=https;type=video/mp4;end">
-            <img class="channel" src="https://img5.pic.in.th/file/secure-sv1/oie_d6nHaoquYtAK-1.png">
-        </a>
-        <a href="intent://goal-th.com/ช่องรายการทีวี/?id=418#Intent;package=com.wiseplay;S.title=รายการทีวี;scheme=https;type=video/mp4;end">
-            <img class="channel" src="https://cms.dmpcdn.com/livetv/2023/12/15/54226050-9af8-11ee-b1e6-1fd23e73ab60_webp_original.webp">
-        </a>
-    </div>
-
-    <!-- เปิดหมวดหมู่เริ่มต้นเป็น "กีฬา" -->
-    <script>
-        // เรียกใช้งานฟังก์ชันให้แสดงหมวดหมู่ "กีฬา" เมื่อโหลดหน้าเว็บ
-        showCategory('sports');
-    </script>
+       
+    <a href="intent://dookeela.live/live-tv/bein1#Intent;package=com.wiseplay;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=http;type=video/mp4;end">
+        <img src="https://ais-s.ais-vidnt.com/ais/play/origin/LIVE///channelicon//beIN_SPORTS_1.png" alt="beIN SPORTS 1">
+ </a>
+   
+    
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet">
 </body>
 </html>
