@@ -3,7 +3,7 @@
 <head>
     <title>Wiseplay</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.1, maximum-scale=10, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, minimum-scale=0.1, maximum-scale=10, user-scalable=yes">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
         body {
@@ -12,47 +12,107 @@
             margin: 0;
             text-align: center;
             font-family: Arial, sans-serif;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            transition: background 0.5s ease-in-out;
         }
-        img {
+
+        .button-container {
+            position: relative;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 10;
+        }
+
+        .button {
+            background-color: transparent;
+            border: 2px solid lightblue;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: lightblue;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        img.channel {
             border-radius: 20px;
-            border: 1px solid #87CEFA;
+            border: 3px solid #87CEFA;
             padding: 2px;
             margin: 3px;
             height: 80px;
             width: 80px;
+            transition: border-color 0.3s ease;
         }
-        .popup, .overlay, [style*="position: fixed"], [style*="position: absolute"] {
-            display: none !important;
+
+        .header {
+            position: fixed;
+            top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            z-index: 10;
+        }
+
+        #alltv {
+            border: 2px solid lightblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            height: 40px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.5);
+            transition: border-color 0.3s ease;
+        }
+
+        #alltv:hover {
+            border-color: #ff5733;
         }
     </style>
-    <script>
-        window.onload = function () {
-            // ซ่อนอิลิเมนต์ที่มีการใช้ ID หรือ Class ที่เกี่ยวข้องกับโฆษณา
-            var adElements = document.querySelectorAll('[id*="ad"], [class*="ad"], [src*="ads"]');
-            adElements.forEach(function(element) {
-                element.style.display = 'none';
-            });
-
-
-    </script>
 </head>
 <body>
 
-
-</p>
-<p style="border: 2px solid lightblue; display: flex; justify-content: center; align-items: center; padding: 5px; height: 30px;">
-  <b style="color: lightblue;">ALLTV</b>
+<p id="alltv">
+  <b id="alltvText" style="color: lightblue;">ALLTV</b>
 </p>
 
-
-
-
-
-
-
-
-
-
+<div class="button-container">
+    <button class="button" id="toggleBg">
+        <img class="icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9BXCHtvEtdJG8J1ApbEnbIqZ58ICRKhg9bA&usqp=CAU" alt="Toggle Background">
+    </button>
+    <input type="file" id="bgInput" class="file-input" accept="image/*">
+    <button class="button" onclick="document.getElementById('bgInput').click()">
+        <img class="icon" src="https://img.icons8.com/ios-filled/50/ffffff/image.png" alt="Select Background">
+    </button>
+    <button class="button" id="changeBorder">
+        <img class="icon" src="https://img.lovepik.com/element/40030/4628.png_300.png" alt="Change Border">
+    </button>
+</div>
 
 <a href="intent://cdn-edge-ott.prd.go.th/live_vlc/smil:c30f-97f7-c767-ca64-98aa.smil/chunklist_w1579257356_b2128000.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=;scheme=https;type=video/mp4;end">
 <img class="channel" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/NBT_Logo.png" alt="" onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
@@ -244,45 +304,29 @@
 
 
 
-<a href="intent://cdn1.googlecdnforstreaming.live/live/trueballthai1/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://warpdooball.net/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-<img class="channel" src="https://cms.dmpcdn.com/livetv/2023/08/02/89262f60-30e1-11ee-b445-3703761d6f4d_webp_original.webp"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
-<a href="intent://goal-th.com/%E0%B8%94%E0%B8%B9%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%AA%E0%B8%94/?id=313356&team=Atlanta-vs-Brown+DE+Adrogue#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://goal-th.com/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-<img class="channel" src="http://cms.dmpcdn.com/livetv/2023/08/02/8a0c49a0-30e1-11ee-b220-4544ede97b74_webp_original.webp"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
-<a href="intent://cdn1.googlecdnforstreaming.live/live/trueballthai2/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://warpdooball.net/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-<img class="channel" src="https://cms.dmpcdn.com/livetv/2023/08/02/8a0c49a0-30e1-11ee-b220-4544ede97b74_webp_original.webp"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
-<a href="intent://goal-th.com/%E0%B8%94%E0%B8%B9%E0%B8%9A%E0%B8%AD%E0%B8%A5%E0%B8%AA%E0%B8%94/?id=313355&team=Atlanta-vs-Brown+DE+Adrogue#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://goal-th.com/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-<img class="channel" src="https://cms.dmpcdn.com/livetv/2023/08/02/8a3b21d0-30e1-11ee-a53e-b3f87dc8ba1e_webp_original.webp"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
-<a href="intent://intent://cdn1.googlecdnforstreaming.live/live/trueballthai3/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://warpdooball.net/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-<img class="channel" src="https://cms.dmpcdn.com/livetv/2024/02/01/e3adbba0-c0ed-11ee-9f09-d517c2f32137_webp_original.webp"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
-<a href="intent://dookeela.live/football/match/325144#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-<img class="channel" src="https://cms.dmpcdn.com/livetv/2024/02/01/e3adbba0-c0ed-11ee-9f09-d517c2f32137_webp_original.webp"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
-<a href="intent://intent://cdn1.googlecdnforstreaming.live/live/trueballthai5/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://warpdooball.net/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-<img class="channel" src="http://cms.dmpcdn.com/livetv/2024/08/14/df6a7110-5a16-11ef-ae6e-398d852551da_webp_original.webp"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
-<a href="intent://cdn1.googlecdnforstreaming.live/live/trueballthai6/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://warpdooball.net/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-<img class="channel" src="https://cms.dmpcdn.com/livetv/2024/08/14/e0a6c1a0-5a16-11ef-8743-87a41cdc0568_webp_original.webp"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
-<a href="intent://cdn1.googlecdnforstreaming.live/live/trueballthai7/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://warpdooball.net/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-<img class="channel" src="https://cms.dmpcdn.com/livetv/2024/08/14/e0a6c1a0-5a16-11ef-8743-87a41cdc0568_webp_original.webp"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
-<a href="intent://cdn1.googlecdnforstreaming.live/live/trueballthai8/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://warpdooball.net/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-<img class="channel" src="https://cms.dmpcdn.com/livetv/2024/08/14/e1c15960-5a16-11ef-9de9-af1b25c2ed4f_webp_original.webp"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
-<a href="intent://cdn1.googlecdnforstreaming.live/live/trueballthai9/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://warpdooball.net/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-<img class="channel" src="https://cms.dmpcdn.com/livetv/2024/08/14/e2346680-5a16-11ef-8c60-b76aa0302695_webp_original.webp"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
-<a href="intent://cdn1.googlecdnforstreaming.live/live/trueballthai10/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://warpdooball.net/&userAgent=exo_player;S.title=KTV;scheme=https;type=video/mp4;end">
-<img class="channel" src="https://cms.dmpcdn.com/livetv/2024/08/14/e249c340-5a16-11ef-a30f-0d36085b5b8b_webp_original.webp"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
+<a href="intent://cdn3.googlecdnforstreaming.live:446/24xball/trueballthai1/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://24xball.co//;scheme=https;type=video/mp4;end">
+<img class="channel" src="https://www.dropbox.com/scl/fi/pemqsp63g6otb9zyif6iy/trueballthai-1.png?rlkey=283unqwpyf55xuzr82h7724kc&dl=1"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
+<a href="intent://cdn3.googlecdnforstreaming.live:446/24xball/trueballthai2/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://24xball.co/;scheme=https;type=video/mp4;end">
+<img class="channel" src="https://www.dropbox.com/scl/fi/98j9c58ctb1okqoz7q7mb/trueballthai-2.png?rlkey=0m6l3b38i8elbjbedxax1hznt&dl=1"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
+<a href="intent://cdn3.googlecdnforstreaming.live:446/24xball/trueballthai3/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://24xball.co/;scheme=https;type=video/mp4;end">
+<img class="channel" src="https://www.dropbox.com/scl/fi/b6ekq1b41o055awdo5pby/trueballthai-3.png?rlkey=dlq33ikm832erdfejfb09yzgv&dl=1"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
+
+<a href="intent://cdn1.googlecdn.live/4k/trueballthai8/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/;scheme=https;type=video/mp4;end">
+<img class="channel" src="https://www.dropbox.com/scl/fi/s951u1ocbor6y0i2zrpw0/trueballthai-4.png?rlkey=xdr6v900247gdfc2l9wgs5nqe&dl=1"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
+<!--
+<a href="intent://cdn1.googlecdn.live/dooballx/trueballthai5/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https:dooballx.com/;scheme=https;type=video/mp4;end">
+<img class="channel" src="https://www.dropbox.com/scl/fi/hfy2vpopol2plk0bg11fd/trueballthai-5.png?rlkey=b8pw540eehq7a9r0g01wvxxuq&dl=1"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
+<a href="intent://cdn1.googlecdn.live/dooballx/trueballthai6/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https:dooballx.com/;scheme=https;type=video/mp4;end">
+<img class="channel" src="https://www.dropbox.com/scl/fi/xmxuil38v3vtd55i31aqa/trueballthai-6.png?rlkey=w55rcn5py4smp1ndyr6wpzbwf&dl=1"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
+<a href="intent://cdn1.googlecdn.live/dooballx/trueballthai7/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https:dooballx.com/;scheme=https;type=video/mp4;end">
+<img class="channel" src="https://www.dropbox.com/scl/fi/v3p7g5k043zbougnxdwmm/trueballthai-7.png?rlkey=3u3a65zu2sruel9nuf6br5jse&dl=1"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
+<a href="intent://cdn1.googlecdn.live/dooballx/trueballthai8/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https:dooballx.com/;scheme=https;type=video/mp4;end">
+<img class="channel" src="https://www.dropbox.com/scl/fi/v3p7g5k043zbougnxdwmm/trueballthai-7.png?rlkey=3u3a65zu2sruel9nuf6br5jse&dl=1"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+<a intent://cdn1.googlecdn.live/4k/trueballthai8/chunks.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=https://dookeela.live/;scheme=https;type=video/mp4;end">
+<img class="channel" src="https://www.dropbox.com/scl/fi/xo57pzrsw14fd9wf2e3pc/trueballthai-9.png?rlkey=uvbrbfkor4mqkfv1atbohsfex&dl=1"alt="onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
+-->
 
 
 
@@ -336,7 +380,7 @@
 <a href="intent://live.cool-channel.com/cool/live-720P.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=;scheme=https;type=video/mp4;end">
 <img class="channel" src="https://cool-channel.com/wp-content/uploads/2022/11/Logo-Final-03-10-59.png" alt="" onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
 <a href="intent://49.0.87.24:1936/HDDragon/Dragon/playlist.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=;scheme=https;type=video/mp4;end">
-<img class="channel" src="http://www.img04.xyz/assets/img/ch_logo/MANGORN.png" alt="" onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
+<img class="channel" src="https://www.img04.xyz/assets/img/ch_logo/MANGORN.png" alt="" onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
 
 <a href="intent://n-edge-1-th.v2h-cdn.com/mixmajor_m/mixmajor/playlist.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=;scheme=https;type=video/mp4;end">
 <img class="channel" src="https://media-mvtv-app.imgix.net/uploads/channel/36_x_wEfgYVBHLrQSiDF8K3kx1auP4yUR2AO7.jpg" alt="" onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
@@ -410,12 +454,71 @@
 
 
 
+<script>
+    let backgroundActive = true;  // ใช้ตัวแปรนี้เพื่อเปิด/ปิดการแสดงพื้นหลัง
 
+    document.addEventListener("DOMContentLoaded", function () {
+        let savedBorderColor = localStorage.getItem("channelBorderColor");
+        if (savedBorderColor) {
+            document.querySelectorAll(".channel").forEach(img => {
+                img.style.borderColor = savedBorderColor;
+            });
+        }
 
+        let savedBackground = localStorage.getItem("backgroundImage");
+        if (savedBackground) {
+            document.body.style.backgroundImage = `url(${savedBackground})`;
+        }
+    });
 
-   
-    
-    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
-    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet">
+    function changeBorderColor() {
+        let colors = [
+            "#FF5733", "#33FF57", "#3357FF", "#FF33A8", "#A833FF",
+            "#33FFF5", "#F5FF33", "#FF8C33", "#8C33FF", "#33FF8C",
+            "#FF3366", "#66FF33", "#3366FF", "#FFFF33", "#FF33FF"
+        ];
+        let randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+        document.querySelectorAll(".channel").forEach(img => {
+            img.style.borderColor = randomColor;
+        });
+
+        localStorage.setItem("channelBorderColor", randomColor);  // บันทึกสีขอบ
+    }
+
+    function changeBackground() {
+        let bgInput = document.getElementById("bgInput");
+        if (bgInput.files && bgInput.files[0]) {
+            let reader = new FileReader();
+            reader.onload = function (e) {
+                document.body.style.backgroundImage = `url(${e.target.result})`;
+                localStorage.setItem("backgroundImage", e.target.result);  // บันทึกพื้นหลัง
+            };
+            reader.readAsDataURL(bgInput.files[0]);
+        }
+    }
+
+    // ฟังก์ชันเปิด/ปิดพื้นหลัง
+    document.getElementById("toggleBg").addEventListener("click", function () {
+        if (backgroundActive) {
+            // ซ่อนพื้นหลัง (ไม่ให้เลือกรูปใหม่)
+            document.body.style.backgroundImage = "";
+        } else {
+            // ใช้พื้นหลังที่เคยบันทึก
+            let savedBackground = localStorage.getItem("backgroundImage");
+            if (savedBackground) {
+                document.body.style.backgroundImage = `url(${savedBackground})`;
+            }
+        }
+        backgroundActive = !backgroundActive;  // สลับสถานะเปิด/ปิด
+    });
+
+    document.getElementById("alltv").addEventListener("click", changeBorderColor);
+    document.getElementById("changeBorder").addEventListener("click", changeBorderColor);
+
+    // ไม่ให้เปิดการเลือกไฟล์เมื่อกดปุ่ม toggleBg
+    document.getElementById("bgInput").addEventListener("change", changeBackground);
+</script>
+
 </body>
 </html>
