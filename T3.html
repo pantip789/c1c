@@ -23,7 +23,7 @@
             margin-top: 20px;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 30px;
             z-index: 10;
         }
 
@@ -53,6 +53,14 @@
             height: 20px;
         }
 
+        .channel-container {
+            display: inline-block;
+            text-align: center;
+            margin: -1px;
+            width: 100px;
+            vertical-align: top;
+        }
+
         img.channel {
             border-radius: 20px;
             border: 3px solid #87CEFA;
@@ -61,6 +69,12 @@
             height: 80px;
             width: 80px;
             transition: border-color 0.3s ease;
+        }
+
+        .channel-title {
+            font-size: 12px;
+            margin-top: 5px;
+            color: #fff;
         }
 
         .header {
@@ -93,6 +107,14 @@
         #alltv:hover {
             border-color: #ff5733;
         }
+        
+.channel-title {
+    font-size: 12px;
+    ฝ-top: 5px;
+    color: White; /* เปลี่ยนเป็นสีดำ */
+    font-weight: bold; /* ทำให้ข้อความหนาขึ้น */
+    transition: color 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -114,20 +136,35 @@
     </button>
 </div>
 
-<a href="intent://www.watchlakorn.in/egde/6dd48bd316c1d5ac33f766ccaafd28c4/NDMwMg==/MTE3MA==/ZGF0YTE2LzE2LTAyLTIwMjUvS29NYURpS2hyYXAtMTYtRmViLTIwMjVfSEQubXA0/index-v1-a1.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=;scheme=https;type=video/mp4;end">
-<img class="channel" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrq4MOCe-SrczTmE8GuCAbkSjFYSPOunye3w&s" alt="" onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
+<div class="channel-container">
+    <a href="intent://www.watchlakorn.in/egde/6dd48bd316c1d5ac33f766ccaafd28c4/NDMwMg==/MTE3MA==/ZGF0YTE2LzE2LTAyLTIwMjUvS29NYURpS2hyYXAtMTYtRmViLTIwMjVfSEQubXA0/index-v1-a1.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=;scheme=https;type=video/mp4;end">
+        <img class="channel" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrq4MOCe-SrczTmE8GuCAbkSjFYSPOunye3w&s" alt="">
+    </a>
+    <p class="channel-title">16/2/68</p>
+</div>
 
-<!-- 9/2/68-->
-<a href="intent://www.watchlakorn.in/egde/1bc623359dedef0ca3ee75daa25ccdfd/NDMwMg==/MTE2OQ==/ZGF0YTE2LzA5LTAyLTIwMjUvS29NYURpS2hyYXAtOS1GZWItMjAyNS5tcDQ=/index-v1-a1.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=;scheme=https;type=video/mp4;end">
-<img class="channel" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrq4MOCe-SrczTmE8GuCAbkSjFYSPOunye3w&s" alt="" onerror="this.onerror=null; this.src='https://as2.ftcdn.net/jpg/03/53/54/91/1000_F_353549130_ahtWCQjjJzhzP8ocg1qR3s2E3Cz1VR3w.jpg';"></a>
+<!-- ภาพและข้อความ -->
+<div class="channel-container">
+    <a href="intent://www.watchlakorn.in/egde/1bc623359dedef0ca3ee75daa25ccdfd/NDMwMg==/MTE2OQ==/ZGF0YTE2LzA5LTAyLTIwMjUvS29NYURpS2hyYXAtOS1GZWItMjAyNS5tcDQ=/index-v1-a1.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=;scheme=https;type=video/mp4;end">
+        <img class="channel" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrq4MOCe-SrczTmE8GuCAbkSjFYSPOunye3w&s" alt="">
+    </a>
+    <p class="channel-title">9/2/68</p>
+</div>
+<div class="channel-container">
+    <a href="intent://www.watchlakorn.in/egde/b15a9493496c7a05326a53695ebf566c/NDMwMg==/MTE2OA==/ZGF0YTE2LzAyLTAyLTIwMjUvS29NYURpS2hyYXAtMi1GZWItMjAyNS5tcDQ=/index-v1-a1.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=;scheme=https;type=video/mp4;end">
+        <img class="channel" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrq4MOCe-SrczTmE8GuCAbkSjFYSPOunye3w&s" alt="">
+    </a>
+    <p class="channel-title">2/2/68</p>
+</div>
 
 
-
-
-
-
-
-
+<div class="channel-container">
+<a href="intent://www.watchlakorn.in/egde/1048ab429cd30a21b6372aa71c76b766/NDMwMg==/MTE2Nw==/ZGF0YTE2LzI2LTAxLTIwMjUvS29NYURpS2hyYXAtMjYtSmFuLTIwMjVfSEQubXA0/index-v1-a1.m3u8#Intent;package=com.wiseplay;S.userAgent=exo_player;S.title=Live%20Program;S.referer=;scheme=https;type=video/mp4;end">
+        <img class="channel" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrq4MOCe-SrczTmE8GuCAbkSjFYSPOunye3w&s" alt="">
+    </a>
+        </a>
+    <p class="channel-title">26/1/68</p>
+</div>
 
 
 
@@ -135,7 +172,7 @@
 
 
 <script>
-    let backgroundActive = true;  // ใช้ตัวแปรนี้เพื่อเปิด/ปิดการแสดงพื้นหลัง
+    let backgroundActive = true;
 
     document.addEventListener("DOMContentLoaded", function () {
         let savedBorderColor = localStorage.getItem("channelBorderColor");
@@ -163,7 +200,7 @@
             img.style.borderColor = randomColor;
         });
 
-        localStorage.setItem("channelBorderColor", randomColor);  // บันทึกสีขอบ
+        localStorage.setItem("channelBorderColor", randomColor);
     }
 
     function changeBackground() {
@@ -172,34 +209,28 @@
             let reader = new FileReader();
             reader.onload = function (e) {
                 document.body.style.backgroundImage = `url(${e.target.result})`;
-                localStorage.setItem("backgroundImage", e.target.result);  // บันทึกพื้นหลัง
+                localStorage.setItem("backgroundImage", e.target.result);
             };
             reader.readAsDataURL(bgInput.files[0]);
         }
     }
 
-    // ฟังก์ชันเปิด/ปิดพื้นหลัง
     document.getElementById("toggleBg").addEventListener("click", function () {
         if (backgroundActive) {
-            // ซ่อนพื้นหลัง (ไม่ให้เลือกรูปใหม่)
             document.body.style.backgroundImage = "";
         } else {
-            // ใช้พื้นหลังที่เคยบันทึก
             let savedBackground = localStorage.getItem("backgroundImage");
             if (savedBackground) {
                 document.body.style.backgroundImage = `url(${savedBackground})`;
             }
         }
-        backgroundActive = !backgroundActive;  // สลับสถานะเปิด/ปิด
+        backgroundActive = !backgroundActive;
     });
 
     document.getElementById("alltv").addEventListener("click", changeBorderColor);
     document.getElementById("changeBorder").addEventListener("click", changeBorderColor);
-
-    // ไม่ให้เปิดการเลือกไฟล์เมื่อกดปุ่ม toggleBg
     document.getElementById("bgInput").addEventListener("change", changeBackground);
 </script>
 
 </body>
 </html>
-
